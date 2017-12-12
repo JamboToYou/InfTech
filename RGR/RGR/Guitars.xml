@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE Guitars [
+  <!ELEMENT Guitars (Acoustic*, Electric*)>
+  <!ELEMENT Acoustic (Guitar)*>
+  <!ATTLIST Acoustic Type CDATA #REQUIRED>
+  <!ELEMENT Electric (Guitar)*>
+  <!ATTLIST Electric Type CDATA #REQUIRED>
+
+  <!ELEMENT Guitar (MadeBy, Model, DeckWood, FingerboardWood, Weight, Length, Price)>
+  <!ELEMENT MadeBy (#PCDATA)>
+  <!ELEMENT Model (#PCDATA)>
+  <!ELEMENT DeckWood (#PCDATA)>
+  <!ELEMENT FingerboardWood (#PCDATA)>
+  <!ELEMENT Weight (#PCDATA)>
+  <!ELEMENT Length (#PCDATA)>
+  <!ELEMENT Price (#PCDATA)>
+]>
+
+<Guitars>
+  <Acoustic Type="Western">
+    <Guitar>
+      <MadeBy>Colombo</MadeBy>
+      <Model>LM3800</Model>
+      <DeckWood>Сосна</DeckWood>
+      <FingerboardWood>Сосна</FingerboardWood>
+      <Weight>1.0</Weight>
+      <Length>0.95</Length>
+      <Price>75.95$</Price>
+    </Guitar>
+  </Acoustic>
+  <Electric Type="Stratocaster">
+    <Guitar>
+      <MadeBy>Gibson</MadeBy>
+      <Model>Les Paul Black Beauty Custom</Model>
+      <DeckWood>Махагон</DeckWood>
+      <FingerboardWood>Махагон</FingerboardWood>
+      <Weight>5.0</Weight>
+      <Length>1.2</Length>
+      <Price>7000.00$</Price>
+    </Guitar>
+  </Electric>
+</Guitars>
