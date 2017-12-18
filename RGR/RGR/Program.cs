@@ -13,22 +13,7 @@ namespace RGR
     {
         public static void Main()
         {
-            XmlReaderSettings setting = new XmlReaderSettings();
-
-            setting.DtdProcessing = DtdProcessing.Parse;
-            setting.ValidationType = ValidationType.DTD;
-            setting.ValidationEventHandler += new ValidationEventHandler(ValidationCallBack);
-
-            XmlReader reader = XmlReader.Create("D:\\edu\\prog\\ИТ\\InfTech\\RGR\\RGR\\Guitars.xml", setting);
-
-            while (reader.Read()) ;
-
-            Console.ReadKey();
-        }
-
-        private static void ValidationCallBack(object sender, ValidationEventArgs e)
-        {
-            Console.WriteLine("Validation Error: {0}", e.Message);
+            
         }
     }
 }

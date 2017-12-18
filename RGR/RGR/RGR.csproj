@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Guitar.cs" />
     <Compile Include="View.cs" />
     <Compile Include="XMLWorker.cs" />
     <Compile Include="Program.cs" />

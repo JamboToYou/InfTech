@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <!DOCTYPE Guitars [
-  <!ELEMENT Guitars (Acoustic*, Electric*)>
+  <!ELEMENT Guitars (Acoustic*, Electric*, Bass*)>
   <!ELEMENT Acoustic (Guitar)*>
   <!ATTLIST Acoustic Type CDATA #REQUIRED>
   <!ELEMENT Electric (Guitar)*>
   <!ATTLIST Electric Type CDATA #REQUIRED>
+  <!ELEMENT Bass (Guitar)*>
+  <!ATTLIST Bass Type CDATA #REQUIRED>
 
   <!ELEMENT Guitar (MadeBy, Model, DeckWood, FingerboardWood, Weight, Length, Price)>
+  <!ATTLIST Guitar ID CDATA #REQUIRED>
   <!ELEMENT MadeBy (#PCDATA)>
   <!ELEMENT Model (#PCDATA)>
   <!ELEMENT DeckWood (#PCDATA)>
@@ -19,7 +22,7 @@
 
 <Guitars>
   <Acoustic Type="Western">
-    <Guitar>
+    <Guitar ID="0">
       <MadeBy>Colombo</MadeBy>
       <Model>LM3800</Model>
       <DeckWood>Сосна</DeckWood>
@@ -30,7 +33,7 @@
     </Guitar>
   </Acoustic>
   <Electric Type="Stratocaster">
-    <Guitar>
+    <Guitar ID="1">
       <MadeBy>Gibson</MadeBy>
       <Model>Les Paul Black Beauty Custom</Model>
       <DeckWood>Махагон</DeckWood>
