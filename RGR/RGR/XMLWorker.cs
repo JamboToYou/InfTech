@@ -11,13 +11,13 @@ namespace RGR
 {
     class XMLWorker
     {
-        private XDocument xdoc;
-        private string path;
+        public XDocument xdoc;
+        public string path;
         private int LastID;
 
         public XMLWorker()
         {
-            path = "D:\\edu\\prog\\ИТ\\InfTech\\RGR\\RGR\\Guitars.xml";
+            path = "Guitars.xml";
             xdoc = XDocument.Load(path);
 
             XmlReaderSettings setting = new XmlReaderSettings();
@@ -52,7 +52,7 @@ namespace RGR
 
             foreach (XElement xType in xdoc.Root.Elements())
             {
-                foreach (XElement xGuitar in xdoc.Root.Elements())
+                foreach (XElement xGuitar in xType.Elements())
                 {
                     list.AddLast(new Guitar(int.Parse(xGuitar.Attribute("ID").Value),
                                             xGuitar.Parent.Name.ToString(),
@@ -69,6 +69,77 @@ namespace RGR
             
 
             return list;
+        }
+
+        public void AddGuitar(Guitar guitar)
+        {
+            bool f = false;
+            foreach (XElement xType in xdoc.Root.Elements(guitar.Variation1))
+            {
+                if (xType.Attribute("Type").Value == guitar.Type1)
+                {
+                    xType.Add(new XElement("Guitar", new XAttribute("ID", ++LastID),
+                                    new XElement("MadeBy", guitar.MadeBy1),
+                                    new XElement("Model", guitar.Model1),
+                                    new XElement("DeckWood", guitar.DeckWood1),
+                                    new XElement("FingerboardWood", guitar.FingerboardWood1),
+                                    new XElement("Weight", guitar.Weight1),
+                                    new XElement("Length", guitar.Price1),
+                                    new XElement("Price", guitar.Price1)));
+                    f = true;
+                    break;
+                }
+            }
+
+            if (!f)
+            {
+                xdoc.Root.Add(new XElement(guitar.Variation1, new XAttribute("Type", guitar.Type1),
+                    new XElement("Guitar", new XAttribute("ID", ++LastID),
+                                    new XElement("MadeBy", guitar.MadeBy1),
+                                    new XElement("Model", guitar.Model1),
+                                    new XElement("DeckWood", guitar.DeckWood1),
+                                    new XElement("FingerboardWood", guitar.FingerboardWood1),
+                                    new XElement("Weight", guitar.Weight1),
+                                    new XElement("Length", guitar.Price1),
+                                    new XElement("Price", guitar.Price1))));
+            }
+        }
+
+        public bool DeleteByID(int ID)
+        {
+            bool result = false;
+
+            foreach (XElement xType in xdoc.Root.Elements())
+            {
+                foreach (XElement xGuitar in xType.Elements())
+                {
+                    if (xGuitar.Attribute("ID").Value == ID.ToString())
+                    {
+                        xGuitar.Remove();
+                        result = true;
+                        break;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public void UpdateGuitar(int ID, string TagName, string NewData)
+        {
+            bool flag = true;
+            foreach (XElement xType in xdoc.Root.Elements())
+            {
+                foreach (XElement xGuitar in xType.Elements())
+                {
+                    if (xGuitar.Attribute("ID").Value == ID.ToString())
+                    {
+                        xGuitar.Element(TagName).SetValue(NewData);
+                        flag = false;
+                    }
+                }
+            }
+            if (flag) View.NoTagFoundMessage();
         }
     }
 }
